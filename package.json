@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "webpack": "^5.69.1"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js && copy index.html dist",
+    "build-prod": "webpack -p --config webpack.config.js && copy index.html dist",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "homepage": "https://kuman514.github.io/MobileKeyboardJS/"
+}
