@@ -5,7 +5,9 @@ export default class Component {
 
     this.renderElement = renderTarget;
 
-    this.render = () => {};
+    this.render = () => {
+      return this.renderElement;
+    };
 
     this.setState = (newState) => {
       let modified = false;
@@ -21,4 +23,4 @@ export default class Component {
       }
     };
   }
-}
+};
