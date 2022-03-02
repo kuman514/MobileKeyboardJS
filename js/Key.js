@@ -1,12 +1,16 @@
 import Component from './Component';
 
 export default class Key extends Component {
-  constructor(props, state, renderTarget) {
-    super(props, state, renderTarget);
+  constructor(props, renderTarget) {
+    super(props, renderTarget);
 
     /*
       State of Key
         - beingPressed: boolean
     */
+
+    this.state = {
+      beingPressed: false
+    };
   }
 };
