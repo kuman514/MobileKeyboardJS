@@ -1,17 +1,31 @@
 import Component from './Component';
 import Key from './Key';
+import Message from './Message';
 
 export default class App extends Component {
-  constructor(props, state, renderTarget) {
-    super(props, state, renderTarget);
+  constructor(props, renderTarget) {
+    super(props, renderTarget);
 
     /*
       State of App
         - modeIndex: number (0~3)
         - currentMessage: string
     */
+   
+    this.state = {
+      modeIndex: 0,
+      currentMessage: ''
+    };
 
     // Message Component
+    const message = new Message({}, {
+      text: ''
+    }, document.getElementById('InputMessage'));
+    const getMessage = () => {};
+
+    const appendLetter = () => {};
+
+    const eraseLetter = () => {};
 
     // Array of Key Components
     const keyIds = [
@@ -81,9 +95,7 @@ export default class App extends Component {
     };
 
     const keys = keyIds.map((item) => {
-      return new Key({}, {
-        beingPressed: false
-      }, document.getElementById(item));
+      return new Key({}, document.getElementById(item));
     });
   }
 };
