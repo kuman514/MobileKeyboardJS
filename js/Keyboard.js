@@ -86,12 +86,31 @@ export default class Keyboard extends Component {
         case 'Submit':
           break;
         default:
+          if (keyInputs[keyCode] && this.props.onType) {
+            let inputIndex = 0;
+            if (this.state.converted) {
+              inputIndex += 2;
+            }
+            if (this.state.shifted) {
+              inputIndex += 1;
+            }
+
+            this.props.onType(keyInputs[keyCode][inputIndex]);
+          }
           break;
       }
     };
 
     const keys = keyIds.map((item) => {
       return new Key({}, document.getElementById(item));
+    });
+
+    this.renderElement.addEventListener('click', (event) => {
+      if (event.target.tagName !== 'BUTTON') {
+        return;
+      }
+
+      onKeyPressed(event.target.id);
     });
   }
 };

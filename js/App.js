@@ -12,6 +12,7 @@ export default class App extends Component {
 
     const appendLetter = (newLetter) => {
       const newMessage = message.getMessage() + newLetter;
+      //console.log(newMessage);
       message.setState({
         text: newMessage
       });
@@ -26,6 +27,9 @@ export default class App extends Component {
     };
 
     // Keyboard Component
-    const keyboard = new Keyboard({}, docuemnt.querySelector('.Keyboard'));
+    const keyboard = new Keyboard({
+      onType: appendLetter,
+      onErase: eraseLetter
+    }, document.querySelector('.Keyboard'));
   }
 };

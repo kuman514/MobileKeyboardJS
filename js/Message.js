@@ -18,6 +18,7 @@ export default class Message extends Component {
     };
 
     this.render = () => {
+      //console.log(this.state.text);
       this.renderElement.textContent = this.state.text;
       return this.renderElement;
     };
