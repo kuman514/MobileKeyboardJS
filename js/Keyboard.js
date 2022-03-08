@@ -43,47 +43,74 @@ export default class Keyboard extends Component {
       'Key8': ['8', '8', '8', '8'],
       'Key9': ['9', '9', '9', '9'],
       'Key0': ['0', '0', '0', '0'],
-      'KeyQ': ['q', 'Q'],
-      'KeyW': ['w', 'W'],
-      'KeyE': ['e', 'E'],
-      'KeyR': ['r', 'R'],
-      'KeyT': ['t', 'T'],
-      'KeyY': ['y', 'Y'],
-      'KeyU': ['u', 'U'],
-      'KeyI': ['i', 'I'],
-      'KeyO': ['o', 'O'],
-      'KeyP': ['p', 'P'],
-      'KeyA': ['a', 'A'],
-      'KeyS': ['s', 'S'],
-      'KeyD': ['d', 'D'],
-      'KeyF': ['f', 'F'],
-      'KeyG': ['g', 'G'],
-      'KeyH': ['h', 'H'],
-      'KeyJ': ['j', 'J'],
-      'KeyK': ['k', 'K'],
-      'KeyL': ['l', 'L'],
-      'KeyZ': ['z', 'Z'],
-      'KeyX': ['x', 'X'],
-      'KeyC': ['c', 'C'],
-      'KeyV': ['v', 'V'],
-      'KeyB': ['b', 'B'],
-      'KeyN': ['n', 'N'],
-      'KeyM': ['m', 'M'],
+      'KeyQ': ['q', 'Q', '%', '`'],
+      'KeyW': ['w', 'W', '\\', '•'],
+      'KeyE': ['e', 'E', '|', '√'],
+      'KeyR': ['r', 'R', '=', '^'],
+      'KeyT': ['t', 'T', '[', 'π'],
+      'KeyY': ['y', 'Y', ']', '∆'],
+      'KeyU': ['u', 'U', '<', '¶'],
+      'KeyI': ['i', 'I', '>', '°'],
+      'KeyO': ['o', 'O', '{', '©'],
+      'KeyP': ['p', 'P', '}', '®'],
+      'KeyA': ['a', 'A', '@', '£'],
+      'KeyS': ['s', 'S', '#', '$'],
+      'KeyD': ['d', 'D', '~', '€'],
+      'KeyF': ['f', 'F', '_', '¥'],
+      'KeyG': ['g', 'G', '&', '§'],
+      'KeyH': ['h', 'H', '-', '¬'],
+      'KeyJ': ['j', 'J', '+', '†'],
+      'KeyK': ['k', 'K', '(', '✓'],
+      'KeyL': ['l', 'L', ')', '™'],
+      'KeyZ': ['z', 'Z', '*', '←'],
+      'KeyX': ['x', 'X', '"', '→'],
+      'KeyC': ['c', 'C', '\'', '↑'],
+      'KeyV': ['v', 'V', ':', '↓'],
+      'KeyB': ['b', 'B', ';', '±'],
+      'KeyN': ['n', 'N', '!', 'µ'],
+      'KeyM': ['m', 'M', '/', '※'],
       'Comma': [',', ',', ',', ','],
       'QuestionMark': ['?', '?', '?', '?'],
-      'Space': [' ', ' ', ' ', ' '],
       'Period': ['.', '.', '.', '.']
+    };
+
+    const keys = keyIds.map((item) => {
+      return new Key({}, document.getElementById(item));
+    });
+
+    const onConvertPressed = () => {
+      this.setState({
+        converted: !this.state.converted,
+        shifted: false
+      });
+    };
+
+    const onShiftPressed = () => {
+      this.setState({
+        converted: this.state.converted,
+        shifted: !this.state.shifted
+      });
     };
 
     const onKeyPressed = (keyCode) => {
       switch (keyCode) {
         case 'Caps':
+          onShiftPressed();
           break;
         case 'Backspace':
+          if (this.props.onErase) {
+            this.props.onErase();
+          }
           break;
         case 'Convert':
+          onConvertPressed();
           break;
         case 'Submit':
+          break;
+        case 'Space':
+          if (this.props.onType) {
+            this.props.onType(' ');
+          }
           break;
         default:
           if (keyInputs[keyCode] && this.props.onType) {
@@ -101,10 +128,6 @@ export default class Keyboard extends Component {
       }
     };
 
-    const keys = keyIds.map((item) => {
-      return new Key({}, document.getElementById(item));
-    });
-
     this.renderElement.addEventListener('click', (event) => {
       if (event.target.tagName !== 'BUTTON') {
         return;
@@ -112,6 +135,24 @@ export default class Keyboard extends Component {
 
       onKeyPressed(event.target.id);
     });
+
+    this.render = () => {
+      let inputIndex = 0;
+      if (this.state.converted) {
+        inputIndex += 2;
+      }
+      if (this.state.shifted) {
+        inputIndex += 1;
+      }
+
+      keys.forEach((item) => {
+        if (keyInputs[item.renderElement.id]) {
+          item.renderElement.textContent = keyInputs[item.renderElement.id][inputIndex];
+        }
+      });
+
+      return this.renderElement;
+    };
   }
 };
 
