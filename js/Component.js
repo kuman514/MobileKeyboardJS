@@ -6,7 +6,7 @@ export default class Component {
     this.renderElement = renderTarget;
 
     this.render = () => {
-      console.log(this.state);
+      //console.log(this.state);
       return this.renderElement;
     };
 
