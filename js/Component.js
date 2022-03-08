@@ -6,16 +6,17 @@ export default class Component {
     this.renderElement = renderTarget;
 
     this.render = () => {
+      console.log(this.state);
       return this.renderElement;
     };
 
     this.setState = (newState) => {
       let modified = false;
-      Object.entries(newState).forEach((key) => {
-        if (this.state[key] !== newState[key]) {
+      Object.entries(newState).forEach(([key, value]) => {
+        if (this.state[key] !== value) {
           modified = true;
         }
-        this.state[key] = newState[key];
+        this.state[key] = value;
       });
 
       if (modified) {
