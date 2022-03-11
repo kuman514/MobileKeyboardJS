@@ -9,6 +9,7 @@ export default class Keyboard extends Component {
       Props of Keyboard
         - onType: function
         - onErase: function
+        - onSubmit: function
       
       State of Keyboard
         - converted: boolean
@@ -103,6 +104,9 @@ export default class Keyboard extends Component {
           onConvertPressed();
           break;
         case 'Submit':
+          if (this.props.onSubmit) {
+            this.props.onSubmit();
+          }
           break;
         case 'Space':
           if (this.props.onType) {

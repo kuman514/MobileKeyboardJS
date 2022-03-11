@@ -26,10 +26,17 @@ export default class App extends Component {
       });
     };
 
+    const copyToClipboard = () => {
+      // Temporary implementation
+      const copyMsg = message.getMessage();
+      alert(copyMsg);
+    };
+
     // Keyboard Component
     const keyboard = new Keyboard({
       onType: appendLetter,
-      onErase: eraseLetter
+      onErase: eraseLetter,
+      onSubmit: copyToClipboard
     }, document.querySelector('.Keyboard'));
   }
 };
