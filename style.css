@@ -7,6 +7,12 @@ body {
   justify-content: space-between;
 }
 
+.CurrentMessage {
+  height: 60%;
+  overflow-y: scroll;
+  overflow-wrap: break-word;
+}
+
 .Keyboard {
   position: -webkit-sticky;
   position: sticky;
