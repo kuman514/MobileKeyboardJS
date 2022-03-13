@@ -90,7 +90,12 @@ export default class Keyboard extends Component {
       });
     };
 
+    const pressedEffect = () => {
+      window.navigator.vibrate(40);
+    };
+
     const onKeyPressed = (keyCode) => {
+      pressedEffect();
       switch (keyCode) {
         case 'Caps':
           onShiftPressed();
