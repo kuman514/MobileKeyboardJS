@@ -48,7 +48,7 @@ export default class App extends Component {
           document.documentElement.style.setProperty('--keyboard-size', `${value}%`);
           break;
         case 'VibrationAmount':
-          document.documentElement.style.setProperty('--vibration-amount', `${value}%`);
+          document.documentElement.style.setProperty('--vibration-amount', `${value}`);
           break;
       }
     };
