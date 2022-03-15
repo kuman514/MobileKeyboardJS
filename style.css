@@ -1,3 +1,9 @@
+:root {
+  --control-panel-size: 15%;
+  --keyboard-size: 40%;
+  --vibration-amount: 80;
+}
+
 body {
   margin: 0;
   width: 100vw;
@@ -8,8 +14,14 @@ body {
 }
 
 .CurrentMessage {
-  height: 60%;
+  height: calc(100% - var(--control-panel-size) - var(--keyboard-size));
   overflow-y: scroll;
+  overflow-wrap: break-word;
+}
+
+.ControlPanel {
+  height: var(--control-panel-size);
+  overflow: scroll;
   overflow-wrap: break-word;
 }
 
@@ -20,7 +32,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 40%;
+  height: var(--keyboard-size);
 }
 
 .Keyboard > div {

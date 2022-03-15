@@ -91,7 +91,8 @@ export default class Keyboard extends Component {
     };
 
     const pressedEffect = () => {
-      window.navigator.vibrate(80);
+      const vibrationAmount = parseInt(document.documentElement.style.getPropertyValue('--vibration-amount'));
+      window.navigator.vibrate(vibrationAmount);
     };
 
     const onKeyPressed = (keyCode) => {

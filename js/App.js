@@ -1,4 +1,5 @@
 import Component from './Component';
+import ControlPanel from './ControlPanel';
 import Keyboard from './Keyboard';
 import Message from './Message';
 
@@ -38,5 +39,23 @@ export default class App extends Component {
       onErase: eraseLetter,
       onSubmit: copyToClipboard
     }, document.querySelector('.Keyboard'));
+
+    const controlAdjust = (type, value) => {
+      console.log(type, value);
+
+      switch (type) {
+        case 'KeyboardSize':
+          document.documentElement.style.setProperty('--keyboard-size', `${value}%`);
+          break;
+        case 'VibrationAmount':
+          document.documentElement.style.setProperty('--vibration-amount', `${value}%`);
+          break;
+      }
+    };
+
+    // Control Panel Component
+    const controlPanel = new ControlPanel({
+      onChange: controlAdjust
+    }, document.querySelector('.ControlPanel'));
   }
 };
