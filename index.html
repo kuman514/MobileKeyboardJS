@@ -10,12 +10,17 @@
 
   <body>
     <div class="CurrentMessage">
-      <span>
-        Current Message: 
-      </span>
       <span id="InputMessage">
         Message sample
       </span>
+    </div>
+
+    <div class="ControlPanel">
+      <label>Keyboard Size</label>
+      <input name="KeyboardSize" type="range" min="25" max="40" value="40" step="1">
+
+      <label>Vibration Amount</label>
+      <input name="VibrationAmount" type="range" min="0" max="150" value="80" step="1">
     </div>
 
     <div class="Keyboard">
