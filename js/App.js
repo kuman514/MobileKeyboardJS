@@ -40,22 +40,16 @@ export default class App extends Component {
       onSubmit: copyToClipboard
     }, document.querySelector('.Keyboard'));
 
-    const controlAdjust = (type, value) => {
-      console.log(type, value);
-
-      switch (type) {
-        case 'KeyboardSize':
-          document.documentElement.style.setProperty('--keyboard-size', `${value}%`);
-          break;
-        case 'VibrationAmount':
-          document.documentElement.style.setProperty('--vibration-amount', `${value}`);
-          break;
-      }
-    };
-
     // Control Panel Component
     const controlPanel = new ControlPanel({
-      onChange: controlAdjust
+      initConfig: {
+        KeyboardSize: '40%',
+        VibrationAmount: 40,
+        KeyboardBGColor: '#FFFFFF',
+        KeyColor: '#CCCCCC',
+        KeyFontColor: '#000000',
+        KeyBorderColor: '#000000'
+      }
     }, document.querySelector('.ControlPanel'));
   }
 };
