@@ -1,7 +1,11 @@
 :root {
   --control-panel-size: 15%;
   --keyboard-size: 40%;
-  --vibration-amount: 80;
+  --vibration-amount: 40;
+  --keyboard-bg-color: #FFFFFF;
+  --key-color: #CCCCCC;
+  --key-font-color: #000000;
+  --key-border-color: #000000;
 }
 
 body {
@@ -33,6 +37,7 @@ body {
   flex-direction: column;
   align-items: center;
   height: var(--keyboard-size);
+  background-color: var(--keyboard-bg-color);
 }
 
 .Keyboard > div {
@@ -46,6 +51,13 @@ body {
 button {
   width: 10%;
   height: 100%;
+  background-color: var(--key-color);
+  color: var(--key-font-color);
+  border-color: var(--key-border-color);
+}
+
+button:hover {
+  opacity: 0.6;
 }
 
 .BigKey {
