@@ -41,14 +41,20 @@ export default class App extends Component {
     }, document.querySelector('.Keyboard'));
 
     // Control Panel Component
+    const savedKeyboardSize = localStorage.getItem('keyboardSize');
+    const savedVibrationAmount = localStorage.getItem('vibrationAmount');
+    const savedKeyboardBGColor = localStorage.getItem('keyboardBGColor');
+    const savedKeyColor = localStorage.getItem('keyColor');
+    const savedKeyFontColor = localStorage.getItem('keyFontColor');
+    const savedKeyBorderColor = localStorage.getItem('keyBorderColor');
     const controlPanel = new ControlPanel({
       initConfig: {
-        KeyboardSize: '40%',
-        VibrationAmount: 40,
-        KeyboardBGColor: '#FFFFFF',
-        KeyColor: '#CCCCCC',
-        KeyFontColor: '#000000',
-        KeyBorderColor: '#000000'
+        KeyboardSize: JSON.parse(savedKeyboardSize) ?? '40',
+        VibrationAmount: parseInt(JSON.parse(savedVibrationAmount) ?? '40'),
+        KeyboardBGColor: JSON.parse(savedKeyboardBGColor) ?? '#FFFFFF',
+        KeyColor: JSON.parse(savedKeyColor) ?? '#CCCCCC',
+        KeyFontColor: JSON.parse(savedKeyFontColor) ?? '#000000',
+        KeyBorderColor: JSON.parse(savedKeyBorderColor) ?? '#000000'
       }
     }, document.querySelector('.ControlPanel'));
   }

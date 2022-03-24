@@ -16,12 +16,6 @@ export default class ControlPanel extends Component {
           }
     */
 
-    if (this.props.initConfig) {
-      Object.entries(this.props.initConfig).forEach(([key, configValue]) => {
-        document.getElementsByName(key)[0].value = configValue;
-      });
-    }
-
     const controlAdjust = (type, value) => {
       console.log(type, value);
 
@@ -45,7 +39,17 @@ export default class ControlPanel extends Component {
           document.documentElement.style.setProperty('--key-border-color', `${value}`);
           break;
       }
+
+      const keyName = type[0].toLowerCase() + type.slice(1);
+      localStorage.setItem(keyName, JSON.stringify(`${value}`));
     };
+
+    if (this.props.initConfig) {
+      Object.entries(this.props.initConfig).forEach(([key, configValue]) => {
+        document.getElementsByName(key)[0].value = configValue;
+        controlAdjust(key, configValue);
+      });
+    }
 
     this.renderElement.addEventListener('change', (event) => {
       controlAdjust(event.target.name, event.target.value);
